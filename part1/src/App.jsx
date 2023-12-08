@@ -1,40 +1,42 @@
-import React from 'react'
+import React,{useState} from 'react'
 
-const Hello = (props) => {
-  const {name,age} =props
-
-  const bornYear = () => new Date().getFullYear() - age
-
+const History = (props) =>{
+  if(props.allClicks.length ===0){
+    return (
+      <div>
+        the app is used by pressing the buttons
+      </div>
+    )
+  }
   return (
     <div>
-      <p>
-        Hello {props.name}, you are {props.age} years old
-      </p>
-      <p>So you were probably born in {bornYear()}</p>
+      button press history: {props.allClicks.join(' ')}
     </div>
   )
 }
 
-const Footer = () => {
-  return (
-    <div>
-      greeting app created by <a href='https://github.com/YFShADoW/FullstackOpen'>YF</a>
-    </div>
-  )
-}
+const Button = ({handleClick,text}) => (
+  <button onClick={handleClick}>
+    {text}
+  </button>
+)
+
 
 const App = () => {
-  const name = 'Peter'
-  const age = 10
+  const [value, setValue] = useState(10)
+
+  const handleClick =() =>{
+    console.log('clicked the button')
+    setValue(0)
+  }
 
   return (
     <div>
-      <h1>Greetings</h1>
-      <Hello name='Maya' age={26 + 10} />
-      <Hello name={name} age={age} />
-      <Footer/>
+      {value}
+      <button onClick={handleClick}>button</button>
     </div>
   )
 }
+
 
 export default App
