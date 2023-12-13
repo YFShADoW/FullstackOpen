@@ -25,15 +25,19 @@ const Button = ({handleClick,text}) => (
 const App = () => {
   const [value, setValue] = useState(10)
 
-  const handleClick =() =>{
-    console.log('clicked the button')
-    setValue(0)
+  const setToValue = (newValue) =>{
+    console.log(newValue);
+    setValue(newValue);
   }
+
+  const Display = props => <div>{props.value}</div>
 
   return (
     <div>
-      {value}
-      <button onClick={handleClick}>button</button>
+      <Display value = {value}/>
+      <Button handleClick={() => setToValue(1000)} text="thousand" />
+      <Button handleClick={() => setToValue(0)} text="reset" />
+      <Button handleClick={() => setToValue(value + 1)} text="increment" />
     </div>
   )
 }
